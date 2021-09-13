@@ -42,6 +42,8 @@
 
 При использовании `spyK` - моков можно получить доступ к закрытым полям объекта. Для этого используются динамические вызовы.
 
+[Пример кода](https://github.com/vladimirlisovskij/mockk-abstract/blob/main/MockBehavior.kt)
+
 <br/>
 
 ---
@@ -69,6 +71,9 @@
 Используя `excludeRecords` можно исключить вызовы из проверки.
 
 `confirmVerified` - вызывает исключение если не все вызовы объекта были обработаны.
+
+
+[Пример кода](https://github.com/vladimirlisovskij/mockk-abstract/blob/main/MethodCallsVerify.kt)
 
 <br/>
 
