@@ -29,6 +29,14 @@ enum class TestEnum(val param: Int) {
 
 fun TestMockClass.testExtension() { }
 
+open class TestClassForInterface( // должени быть открытым
+    val param: Int
+)
+
+interface TestInterface {
+    fun testInterfaceFun()
+}
+
 class CreateMockTest {
     @MockK
     lateinit var testMockClass: TestMockClass
@@ -101,5 +109,17 @@ class CreateMockTest {
         verify { testMockClass.testExtension() } // проверка вызова
         unmockkStatic(TestMockClass::testExtension) // только для JVM
 //        unmockkStatic("com.example.mockktest.MockCreateKt") // эквивалент предыдущего вызова
+    }
+
+    @Test
+    fun interfaceMock() {
+        val mock = mockk<TestClassForInterface>(moreInterfaces = arrayOf(TestInterface::class))
+
+        every { mock.param } returns 10 // mockk требует установить желаемое поведение
+        justRun { (mock as TestInterface).testInterfaceFun() } // эквивалент every { ... } returns Unit
+        (mock as TestInterface).testInterfaceFun()
+
+        assertEquals(10, mock.param)
+        verify { (mock as TestInterface).testInterfaceFun() } // проверка вызова
     }
 }
