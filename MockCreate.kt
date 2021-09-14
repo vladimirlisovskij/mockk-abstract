@@ -29,6 +29,8 @@ enum class TestEnum(val param: Int) {
 
 fun TestMockClass.testExtension() { }
 
+fun testTopLevelFunction() { }
+
 open class TestClassForInterface( // должени быть открытым
     val param: Int
 )
@@ -105,8 +107,11 @@ class CreateMockTest {
         mockkStatic(TestMockClass::testExtension) // только для JVM
 //        mockkStatic("com.example.mockktest.MockCreateKt") // эквивалент предыдущего вызова
         justRun { testMockClass.testExtension() } // эквивалент every { ... } returns Unit
+        justRun { testTopLevelFunction() }
         testMockClass.testExtension()
+        testTopLevelFunction()
         verify { testMockClass.testExtension() } // проверка вызова
+        verify { testTopLevelFunction() }
         unmockkStatic(TestMockClass::testExtension) // только для JVM
 //        unmockkStatic("com.example.mockktest.MockCreateKt") // эквивалент предыдущего вызова
     }
