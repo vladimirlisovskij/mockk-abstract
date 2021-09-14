@@ -91,6 +91,8 @@
 
 Существуют схожие функции для примитивов, например `anyBooleanVararg` или `varargAnyInt`.
 
+[Пример кода](https://github.com/vladimirlisovskij/mockk-abstract/blob/main/Vararg.kt)
+
 <br/>
 
 ---
@@ -108,6 +110,8 @@
 | `match/coMatch` | проверка блоком кода |
 
 Свой матчер можно создать реализовав интерфейс `Matcher` либо написав функцию расширения для `MockKVerificationScope` или `MockKMatcherScope`.
+
+[Пример кода](https://github.com/vladimirlisovskij/mockk-abstract/blob/main/Matchers.kt)
 
 <br/>
 
